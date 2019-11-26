@@ -1,0 +1,2 @@
+<%= current_user.name if current_user %>
+<%= link_to "ログアウト", session_path(current_user), method: :delete  if current_user%>
