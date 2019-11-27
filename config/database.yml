@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: diet-creator_production
-  username: diet-creator
-  password: <%= ENV['DIET-CREATOR_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
