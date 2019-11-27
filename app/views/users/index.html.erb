@@ -1,2 +1,5 @@
-<%= current_user.name if current_user %>
-<%= link_to "ログアウト", session_path(current_user), method: :delete  if current_user%>
+<% if current_user %>
+  <%= current_user.name %>
+  <%= current_user.email %>
+  <%= link_to "ログアウト", session_path(current_user), method: :delete %>
+<% end %>

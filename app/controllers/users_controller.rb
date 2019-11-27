@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if  @user.save
-      redirect_to new_session_path
+      login(user_params[:email], user_params[:password])
+      redirect_to root_path
     else
       render :new
     end 
@@ -21,16 +22,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password)
-  end
-
-  def login
-    @user = User.find(user_id)
-    byebug
-    if @user = login(@user.email, @user.password)
-      redirect_to root_path
-    else
-      render :new
-    end
   end
 
 end
