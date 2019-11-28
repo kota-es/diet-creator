@@ -1,6 +1,6 @@
 <%= form_with url: sessions_path, method: :post do |f| %>
-  <%= f.email_field :email, placeholder:"email" %>
+  <%= f.email_field :email, placeholder:"email", id: "test"%>
   <%= f.password_field :password, placeholder:"pass" %>
-  <%= f.submit "送信" %>
-  <%= link_to "新規登録", new_user_path %>
+  <%= f.submit "送信", class: "btn btn-success" %>
+  <%= link_to "新規登録", new_user_path, class: "btn btn-success"%>
 <% end %>
