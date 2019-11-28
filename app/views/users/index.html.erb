@@ -1,5 +1,7 @@
 <% if current_user %>
-  <%= current_user.name %>
-  <%= current_user.email %>
-  <%= link_to "ログアウト", session_path(current_user), method: :delete %>
+  <p><%= current_user.name %></p>
+  <p><%= current_user.email %></p>
+  <p><%= image_tag current_user.image_url %></p>
+  <p><%= link_to "ログアウト", session_path(current_user), method: :delete %></p>
 <% end %>
+<%= link_to "新規登録", new_user_path %>
