@@ -16,4 +16,5 @@ CarrierWave.configure do |config|
     }
     config.fog_directory  = 'diet-creator'
     config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/diet-creator'
+  end
 end
