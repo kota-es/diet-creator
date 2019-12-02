@@ -1,2 +1,23 @@
-// Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "modules/users";
+@import "modules/mypage";
+
+
+body{
+  min-height: 100vh;
+  background:repeating-linear-gradient(
+    #ff6600 0px,  #ff6600 50px,
+    #ffffff 50px, #ffffff 80px,
+    #008738 80px, #008738 130px,
+    #ffffff 130px,#ffffff 160px,
+    #fd0003 160px,#fd0003 210px,
+    #ffffff 210px,#ffffff 240px,
+    #0068c4 240px,#0068c4 290px,
+    #ffffff 290px,#ffffff 320px,
+    #00a040 320px,#00a040 370px,
+    #ffffff 370px,#ffffff 400px,
+    #008cd6 400px,#008cd6 450px,
+    #ffffff 450px,#ffffff 480px,
+    );
+  font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+}

@@ -1,0 +1,32 @@
+.mypage-wrapper{
+  width: 90%;
+  margin: 0 auto;
+  background: #fff;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.mypage-header{
+  border: 1px solid #ddd;
+}
+
+.mypage-main{
+  border: 1px solid #ddd;
+  width: 100%;
+  margin: 10px auto;
+  padding: 30px;
+  background: lightgrey;
+  &__container{
+    display: flex;
+    justify-content: center;
+  }
+  &__data-box{
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    background: #fff;
+    border: 2px solid darkgrey;
+    display: inline-block;
+  }
+}
