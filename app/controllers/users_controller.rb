@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :redirect_login, only: :index
+
   def index    
   end
 
@@ -53,6 +55,10 @@ class UsersController < ApplicationController
     end
     
     Date.new(year.to_i, month.to_i, day.to_i)
+  end
+
+  def redirect_login
+    redirect_to new_session_path unless logged_in?
   end
 
 end
