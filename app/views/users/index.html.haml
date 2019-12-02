@@ -1,0 +1,54 @@
+.mypage-wrapper
+  .mypage-flash
+    = flash[:notice]
+  .mypage-header
+    %p 
+    こんにちは！
+    = current_user.name
+    さん
+    = link_to session_path(current_user), method: :delete do
+      ログアウト
+    %nav.navbar.navbar-expand
+      %ul.navbar-nav
+        %li.nav-item
+          =link_to "#", class:"nav-link" do
+            商品を探す
+        %li.nav-item
+          =link_to "#", class:"nav-link" do
+            商品を登録する
+        %li.nav-item 
+          =link_to "#", class:"nav-link" do
+            食事記録を見る
+        %li.nav-item
+          =link_to "#", class:"nav-link" do
+            ユーザー編集
+  .mypage-main
+    .mypage-main__container
+      .mypage-main__data-box.profile
+        .data-title #{current_user.name}さんのデータ
+        %p 身長 : #{current_user.height}cm
+        %p 体重 : #{current_user.weight}kg
+        %p 年齢 : #{current_user.age}歳
+        %p 身体活動レベル : #{current_user.pal}
+      .mypage-main__data-box.kcal
+        .data-title エネルギー（kcal）
+        %p 1日の摂取目安量 : #{current_user.day_kcal}kcal      
+        %p 今日の摂取量 : 
+      .mypage-main__data-box.protein
+        .data-title タンパク質（g）
+        %p 1日の推奨量 : #{current_user.day_protein}g
+        %p 今日の摂取量 :      
+    .mypage-main__container
+      .mypage-main__data-box.fat
+        .data-title 脂質（g）
+        %p 1日の摂取目安量 : #{current_user.day_fat}g
+        %p 今日の摂取量 : 
+      .mypage-main__data-box.carb
+        .data-title 炭水化物（g）
+        %p 1日の摂取目安量 : #{current_user.day_carb}g
+        %p 今日の摂取量 : 
+      .mypage-main__data-box.salt
+        .data-title 食塩相当量（g）
+        %p 1日の摂取目安量 : #{current_user.day_salt}g
+        %p 今日の摂取量 : 
+  .mypage-footer

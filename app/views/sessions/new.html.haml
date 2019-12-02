@@ -1,0 +1,22 @@
+.profile-wrapper
+  .site-title.my-3.py-3.text-center 
+    %p コンビニご飯ユーザーのレビュー＆栄養管理サービス
+    %h1.font-weight-bold コンメシ
+  .profile-container
+    %h2.py-3.text-center ログイン
+    .profile-form.bg-white.my-5.mx-auto
+      = form_with url: sessions_path, method: :post do |f|
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :email,"メールアドレス"
+          .profile-form__field__input
+            = f.email_field :email, class: "account-form"
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :password,"パスワード"
+          .profile-form__field__input
+            = f.password_field :password, placeholder:"7文字以上（英数字含む）", class: "account-form"
+        .profile-form__field
+          = f.submit "ログイン", class:"btn btn-primary btn-lg my-3"
+          = link_to new_user_path do
+            .to-registration 新規登録はこちら

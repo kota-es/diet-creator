@@ -1,0 +1,52 @@
+.profile-wrapper
+  .profile-container
+    %h2.py-3.text-center プロフィール登録
+    %h5.py-3.text-center.text-danger ※まだ登録は終わっていません。
+    .profile-form.bg-white.my-5.mx-auto
+      = form_for @user do |f|
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :image,"アバター画像"
+          .profile-form__field__input
+            = f.file_field :image
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :gender, "性別"
+          .profile-form__field__input
+            = f.radio_button :gender, :male
+            = f.label :gender, "男性", for:"user_gender_male"
+            = f.radio_button :gender, :female
+            = f.label :gender, "女性", for:"user_gender_female"
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :height,"身長"
+          .profile-form__field__input
+            = f.text_field :height, placeholder:"例）170.5", class:"form_right"
+            cm
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :weight,"体重"
+          .profile-form__field__input
+            = f.text_field :weight, placeholder:"例）62.7", class:"form_right"
+            kg
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :pal, "身体活動レベル"
+          .profile-form__field__input
+            %ul.list-group
+              %li.list-group-item-action
+                = f.radio_button :pal, 1.50
+                = f.label :pal, "[1.5]生活の大部分で座っており、滅多に運動しない", for:"user_pal_15"
+              %li.list-group-item-action
+                = f.radio_button :pal, 1.75
+                = f.label :pal, "[1.75]座位中心の仕事だが、通勤や趣味、家事など軽い運動習慣がある", for:"user_pal_175"
+              %li.list-group-item-action
+                = f.radio_button :pal, 2.00
+                = f.label :pal, "[2.0]移動や立位の多い職業、もしくはハードな運動習慣がある", for:"user_pal_20"
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :birthday, "生年月日"
+          .profile-form__field__input
+            = raw sprintf(f.date_select(:birthday, prompt: "--", use_month_numbers: true,start_year: Time.now.year, end_year: (Time.now.year - 100), date_separator: '%s'), "年", "月") + "日"
+        .profile-form__field
+          = f.submit "登録する", class:"btn btn-primary btn-lg my-3"
