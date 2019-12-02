@@ -17,9 +17,3 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-
-$(function(){
-  $("#test").on("keyup", function(){
-    console.log("ok")
-  })
-});
