@@ -15,6 +15,8 @@ class User < ApplicationRecord
   validates :pal, presence: true
   validates :birthday, presence: true
 
+  has_many :items
+  
   def age
     today = Date.today
     age = today.year - self.birthday.year
