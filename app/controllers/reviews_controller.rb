@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
 
-  before_action :set_item, only: [:new, :create]
+  before_action :set_item, only: [:new, :create, :edit]
+  before_action :set_my_review, only: [:edit, :update, :destroy]
 
   def new
     @review = @item.reviews.new
@@ -16,12 +17,9 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:item_id])
-    @review = Review.find(params[:id])
   end
 
   def update
-    @review = Review.find(params[:id])
     if @review.update(review_params)
       redirect_to items_path
     else
@@ -30,9 +28,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    binding.pry
-    @review = Review.find(params[:id])
-    @review.destroy if @review.user == current_user
+    @review.destroy
     redirect_to root_path
   end
 
@@ -44,6 +40,10 @@ class ReviewsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def set_my_review
+    @review = current_user.reviews.find(params[:id])
   end
 
 end
