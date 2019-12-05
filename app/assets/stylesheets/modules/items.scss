@@ -32,12 +32,22 @@
         width: 100%;
         height: 2.5rem;
       }
+      & #item_name{
+        width: 100%;
+      }
       & li{
         list-style: none;
       }
       & .form_right{
         text-align: right;
         margin-right: 5px;
+      }
+      & select{
+        width: 100%;
+      }
+      & #item_note{
+        width: 100%;
+        height: 100px;
       }
     }
     & .to-registration{

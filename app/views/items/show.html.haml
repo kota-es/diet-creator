@@ -1,24 +1,24 @@
 .item-show-wrapper
   .item-show-container
-    .container.border
-      .row.border
+    .container
+      .row
         %h3.col.font-weight-bold #{@item.name} (#{@item.genre.name})
-      .row.border
-        .col= image_tag @item.image.url if @item.image.present?
-      .row.border
-        .col 販売店
-      .row.border
+      .row
+        .col.item-image= image_tag @item.image.url if @item.image.present?
+      .row.pt-3
+        .col.font-weight-bold 販売店
+      .row.pb-3
         .col
           - @item.shops.each do |shop|
             .item_shops
-              =" ・#{shop.name}"
+              ="・#{shop.name}"
       .row.border
-        .col 価格（税抜）
-        .col カロリー
-        .col タンパク質
-        .col 脂質
-        .col 炭水化物
-        .col 塩分 
+        .col.font-weight-bold 価格（税抜）
+        .col.font-weight-bold カロリー
+        .col.font-weight-bold タンパク質
+        .col.font-weight-bold 脂質
+        .col.font-weight-bold 炭水化物
+        .col.font-weight-bold 塩分 
       .row.border
         .col #{@item.price}円
         .col #{@item.kcal}kcal
@@ -26,28 +26,36 @@
         .col #{@item.fat}g
         .col #{@item.carb}g
         .col #{@item.salt}g
-      .row.border
-        .col 備考
-      .row
+      .row.pt-3
         .col
           - if @item.note.present?
             = @item.note 
           - else
             = "この商品の備考はありません"
-      .row.border
+      .row.item-menu
         .col
           = link_to "#", class:"btn btn-danger" do
             お食事リストに追加する
         .col
-          = link_to "#", class:"btn btn-warning text-white" do
+          = link_to new_item_review_path(@item), class:"btn btn-warning text-white" do
             レビューを投稿する
         .col
           = link_to edit_item_path(@item), class:"btn btn-info" do
             商品情報を編集する
-      .row.border 
-        .col カスタマーレビュー
-      -# .row.border
-      -#   - if @item.reviews.present?
-      -#     = @item.reviews
-      -#   - else
-      -#     = "この商品の備考はありません"
+  .review-title
+    %h5.font-weight-bold= "カスタマーレビュー(#{@reviews.length}件)"
+  - @reviews.each do |review|
+    .review-box
+      .review-user
+        %strong= "#{review.user.name}さん"
+        ="｜性別:#{review.user.gender_kana},身長:#{review.user.height}cm,摂取カロリー目安:#{review.user.day_kcal}kcal"
+      .review-rate= "美味しさ:#{review.taste_rate}  満腹感:#{review.volume_rate}"
+      .review-comment= simple_format(review.comment)
+      - if review.user == current_user
+        .review-btn
+          .review-btn__delete
+            = link_to "/items/#{@item.id}/reviews/#{review.id}", method: :delete, class:"btn btn-danger" do
+              削除
+            .review-btn__edit
+            = link_to "/items/#{@item.id}/reviews/#{review.id}/edit", class:"btn btn-warning text-white" do
+              編集

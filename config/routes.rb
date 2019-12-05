@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   end
 
   resources :sessions
-  resources :items
+  
+  resources :items do
+    resources :reviews
+  end
 
 end

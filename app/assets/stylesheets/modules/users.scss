@@ -20,7 +20,7 @@
 }
 .profile-form{
   width: 100%;
-  padding: 0 95px;
+  padding: 0 90px;
   &__field{
     padding: 10px 0;
     &__label{
@@ -43,6 +43,9 @@
     & .to-registration{
       display: inline-block;
       margin: 5px;
+    }
+    & select{
+      width: 70px;
     }
   }
 }

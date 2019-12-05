@@ -1,0 +1,19 @@
+.reivew-form.bg-white.my-5.mx-auto
+  = form_for([@item, @review]) do |f|
+    .reivew-form__field
+      .reivew-form__field__label
+        = f.label :taste,"美味しさ（５段階評価）"
+      .reivew-form__field__input
+        = f.select :taste,[1,2,3,4,5]
+    .reivew-form__field
+      .reivew-form__field__label
+        = f.label :volume,"満腹感（５段階評価）"
+      .reivew-form__field__input
+        = f.select :volume,[1,2,3,4,5]
+    .reivew-form__field
+      .reivew-form__field__label
+        = f.label :comment, "コメント"
+      .reivew-form__field__input
+        = f.text_area :comment, class:"review-text"
+    .reivew-form__field
+      = f.submit(class:"btn btn-primary btn-lg my-3")

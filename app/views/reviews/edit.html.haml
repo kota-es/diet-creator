@@ -1,0 +1,10 @@
+.reivew-wrapper
+  .reivew-container
+    - if @review.errors.any?
+      - unless @review.valid?
+        - if errors = @review.errors.full_messages
+          %ul.signup-error-message
+            - errors.each do |error|
+              %li=error
+    %h2.py-3.text-center= "#{@item.name} のレビュー編集"
+    = render 'form', item: @item, review: @review

@@ -7,11 +7,114 @@
   padding: 10px 0;
   margin: 0 auto;
   background: #fff;
+  & .item-image{
+    padding: 30px 0;
+    background: #ddd;
+  }
   & img{
     width: 50%;
     height: auto;
   }
   & .item_shops{
     display: inline-block;
+  }
+  & .item-menu{
+    padding: 30px 80px 10px;
+  }
+}
+
+.review-title{
+  width: 60%;
+  height: 30px;
+  margin: 20px auto;
+  background: darkgray;
+  color: #fff;
+  text-align: center;
+}
+
+.review-box{
+  width: 60%;
+  min-height: 150px;
+  margin: 20px auto;
+  padding: 5px;
+  background: #fff;
+  text-align: center;
+  border: 3px solid #ddd;
+  border-radius: 5px;
+  & .review-user{
+    text-align: left;
+    padding-bottom: 5px;
+  }
+  & .review-rate{
+    text-align: left;
+    padding-bottom: 10px;
+  }
+  & .review-comment{
+    text-align: left;
+  }
+  .review-btn{
+    display: flex;
+    justify-content: flex-end;
+    &__delete{
+      display: inline-block;
+    }
+    &__edit{
+      display: inline-block;
+    }
+  }
+}
+
+.review-text{
+  width: 90%;
+  height: 200px;
+  & select{
+  height: 50px;
+  width: 50px;
+  }
+}
+
+.reivew-wrapper{
+  padding: 30px 0 0;
+}
+
+.site-title{
+  width: 70%;
+  height: 100%;
+  margin: 0 auto 10px;
+  background: #fff;
+}
+
+.reivew-container{
+  width: 70%;
+  padding: 10px 10%;
+  margin: 0 auto;
+  background: #fff;
+  & h2{
+    border-bottom: 1px solid #ddd;
+  }
+}
+.reivew-form{
+  width: 100%;
+  padding: 0 90px;
+  &__field{
+    padding: 10px 0;
+    &__label{
+      font-weight: bold;
+      font-size: 20px;
+    }
+    &__input{
+      & .account-form{
+        width: 100%;
+        height: 2.5rem;
+      }
+    }
+    & .to-registration{
+      display: inline-block;
+      margin: 5px;
+    }
+    & select{
+      width: 60px;
+      height: 40px;
+    }
   }
 }

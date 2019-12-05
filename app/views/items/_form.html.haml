@@ -1,0 +1,68 @@
+.item-registration-form.bg-white.my-5.mx-auto
+  = form_for @item do |f|
+    .item-registration-form__field
+      .item-registration-form__field__label
+        = f.label :name, "商品名"
+      .item-registration-form__field__input
+        = f.text_field :name
+    .item-registration-form__field
+      .item-registration-form__field__label
+        = f.label :image, "商品画像（なくても構いません）"
+      .item-registration-form__field__input
+        = f.file_field :image
+    .item-registration-form__field
+      .item-registration-form__field__label
+        = f.label :genre_id, "商品ジャンル"
+      .item-registration-form__field__input
+        = f.collection_select(:genre_id, Genre.all, :id, :name)
+    .item-registration-form__field
+      .item-registration-form__field__label
+        = f.label :shop_id, "販売店"
+      .item-registration-form__field__input
+        = f.collection_check_boxes(:shop_ids, Shop.all, :id, :name) do |b|
+          %div
+            = b.check_box
+            = b.label
+    .item-registration-form__field
+      .item-registration-form__field__label
+        = f.label :price, "価格（税抜）"
+      .item-registration-form__field__input
+        = f.text_field :price, class:"form_right"
+        円
+    .item-registration-form__field
+      .item-registration-form__field__label
+        = f.label :kcal, "カロリー"
+      .item-registration-form__field__input
+        = f.text_field :kcal, class:"form_right"
+        kcal
+    .item-registration-form__field
+      .item-registration-form__field__label
+        = f.label :protein, "タンパク質"
+      .item-registration-form__field__input
+        = f.text_field :protein, class:"form_right"
+        g
+    .item-registration-form__field
+      .item-registration-form__field__label
+        = f.label :fat, "脂質"
+      .item-registration-form__field__input
+        = f.text_field :fat, class:"form_right"
+        g
+    .item-registration-form__field
+      .item-registration-form__field__label
+        = f.label :carb, "炭水化物"
+      .item-registration-form__field__input
+        = f.text_field :carb, class:"form_right"
+        g
+    .item-registration-form__field
+      .item-registration-form__field__label
+        = f.label :salt, "食塩相当量"
+      .item-registration-form__field__input
+        = f.text_field :salt, class:"form_right"
+        g
+    .item-registration-form__field
+      .item-registration-form__field__label
+        = f.label :note, "備考"
+      .item-registration-form__field__input
+        = f.text_area :note
+    .item-registration-form__field
+      = f.submit(class:"btn btn-primary btn-lg my-3")

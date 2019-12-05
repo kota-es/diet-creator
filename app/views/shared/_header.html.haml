@@ -1,0 +1,21 @@
+.mypage-header
+  %p 
+  こんにちは！
+  = current_user.name
+  さん
+  = link_to session_path(current_user), method: :delete do
+    ログアウト
+  %nav.navbar.navbar-expand
+    %ul.navbar-nav
+      %li.nav-item
+        =link_to items_path, class:"nav-link" do
+          商品を探す
+      %li.nav-item
+        =link_to new_item_path, class:"nav-link" do
+          商品を登録する
+      %li.nav-item 
+        =link_to "#", class:"nav-link" do
+          食事記録を見る
+      %li.nav-item
+        =link_to "#", class:"nav-link" do
+          ユーザー編集
