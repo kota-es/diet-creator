@@ -15,6 +15,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :genre
   has_many :item_shops
   has_many :shops, through: :item_shops
+  has_many :reviews
   belongs_to :user
 
   def shop_name

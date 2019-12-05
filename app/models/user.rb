@@ -16,7 +16,12 @@ class User < ApplicationRecord
   validates :birthday, presence: true
 
   has_many :items
+  has_many :reviews
   
+  def gender_kana
+    self.gender == "male" ? "男性" : "女性"
+  end
+
   def age
     today = Date.today
     age = today.year - self.birthday.year

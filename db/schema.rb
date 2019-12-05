@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_03_065622) do
+ActiveRecord::Schema.define(version: 2019_12_05_022321) do
 
   create_table "item_shops", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id"
@@ -39,6 +39,18 @@ ActiveRecord::Schema.define(version: 2019_12_03_065622) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "user_id"
+    t.integer "taste", null: false
+    t.integer "volume", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_reviews_on_item_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "shops", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -63,4 +75,6 @@ ActiveRecord::Schema.define(version: 2019_12_03_065622) do
 
   add_foreign_key "item_shops", "items"
   add_foreign_key "item_shops", "shops"
+  add_foreign_key "reviews", "items"
+  add_foreign_key "reviews", "users"
 end
