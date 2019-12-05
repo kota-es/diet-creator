@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   mount_uploader :image, ImageUploader
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
   validates :price, presence: true
   validates :kcal, presence: true
   validates :protein, presence: true
@@ -16,6 +16,14 @@ class Item < ApplicationRecord
   has_many :item_shops
   has_many :shops, through: :item_shops
   belongs_to :user
+
+  def shop_name
+    if self.shops.length > 1
+      "#{self.shops.length}店舗で販売"
+    else
+      self.shops.first.name
+    end
+  end
 
   # enum shop_id: { 'セブン-イレブン': 1, 'ファミリーマート': 2, 'ローソン': 3, 
   #                 'ミニストップ': 4, 'デイリーヤマザキ': 5, 'セイコーマート': 6,

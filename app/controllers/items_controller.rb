@@ -1,10 +1,17 @@
 class ItemsController < ApplicationController
+
+  before_action :set_item, only: [:show, :edit, :update]
+
+  def index
+    @items = Item.all.order(params[:sort])
+  end 
+    
   def new
-    @item = Item.new
+    @item = current_user.items.new
   end
 
   def create
-    @item = Item.new(item_params
+    @item = current_user.items.new(item_params
       # name: item_params[:name],
       # image: item_params[:image],
       # genre_id: item_params[:genre_id].to_i,
@@ -26,12 +33,13 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       flash[:notice] = "商品「#{@item.name}」の更新が完了しました"
       redirect_to root_path
@@ -40,8 +48,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  private
+
   def item_params
-    params.require(:item).permit(:name, :image, :genre_id, {:shop_ids => []}, :price, :kcal, :protein, :fat, :carb, :salt, :note).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :image, :genre_id, {:shop_ids => []}, :price, :kcal, :protein, :fat, :carb, :salt, :note)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 end

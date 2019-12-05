@@ -1,0 +1,73 @@
+.item-index-wrapper{
+  padding: 30px 0 0;
+}
+.item-index-container{
+  width: 90%;
+  padding: 10px 0;
+  margin: 0 auto;
+  background: #fff;
+  font-size: 0.8rem;
+  & table{
+    box-sizing: border-box;
+    & .image{
+      width: 67px;
+      text-align: center;
+    }
+    & .name{
+      width: 188px;
+      text-align: center;
+    }
+    & .genre{
+      width: 161px;
+      text-align: center;
+    }
+    & .shop{
+      width: 125px;
+      text-align: center;
+    }
+    & .price{
+      width: 107px;
+    }
+    & .kcal{
+      width: 80px;
+    }
+    & .protein{
+      width: 93px;
+    }
+    & .fat{
+      width: 64px;
+    }
+    & .carb{
+      width: 81px;
+    }
+    & .salt{
+      width: 56px;
+    }
+    & .detail{
+      width: 88px;
+    }
+    & thead{
+      display: block;
+      text-align: center;
+      & .detail{
+        text-align: center;
+      }
+    }
+    & tbody{
+      display: block;
+      height: 600px;
+      overflow: scroll;
+      &::-webkit-scrollbar{
+        display: none;
+      }
+      & img{
+        width: 40px;
+        height: auto;
+      }
+      & td{
+        text-align: right;
+        line-height: 35px;
+      }
+    }
+  }
+}

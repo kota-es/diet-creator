@@ -1,0 +1,38 @@
+.item-index-wrapper
+  .item-index-container
+    .container
+      %table.table.table-hover
+        %thead
+          %tr
+            - def sortTh(a, contName)
+              - if request.fullpath.include?('desc')
+                - link_to a, sort: contName
+              - else
+                - link_to a, sort: "#{contName} desc"
+            %th.image 商品
+            %th.name 商品名
+            %th.genre ジャンル
+            %th.shop 販売店
+            %th.price 価格（税抜）
+            %th.kcal= sortTh('カロリー', 'kcal')
+            %th.protein= sortTh('タンパク質', 'protein')
+            %th.fat= sortTh('脂質', 'fat')
+            %th.carb= sortTh('炭水化物', 'carb')
+            %th.salt= sortTh('塩分', 'salt')
+            %th.detail 詳細
+        %tbody
+          - @items.each do |item|
+            %tr
+              %td.image= image_tag item.image.url if item.image.present?
+              %td.name #{item.name}
+              %td.genre #{item.genre.name}
+              %td.shop= item.shop_name
+              %td.price #{item.price}円
+              %td.kcal #{item.kcal}kcal
+              %td.protein #{item.protein}g
+              %td.fat #{item.fat}g
+              %td.carb #{item.carb}g
+              %td.salt #{item.salt}g
+              %td.detail
+                = link_to item_path(item) ,class:"btn btn-info" do
+                  詳細
