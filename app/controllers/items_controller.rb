@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @reviews = @item.reviews.includes(:user).order("created_at DESC")
   end
 
   def edit
