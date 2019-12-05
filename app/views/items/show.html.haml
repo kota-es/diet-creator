@@ -1,0 +1,53 @@
+.item-show-wrapper
+  .item-show-container
+    .container.border
+      .row.border
+        %h3.col.font-weight-bold #{@item.name} (#{@item.genre.name})
+      .row.border
+        .col= image_tag @item.image.url if @item.image.present?
+      .row.border
+        .col 販売店
+      .row.border
+        .col
+          - @item.shops.each do |shop|
+            .item_shops
+              =" ・#{shop.name}"
+      .row.border
+        .col 価格（税抜）
+        .col カロリー
+        .col タンパク質
+        .col 脂質
+        .col 炭水化物
+        .col 塩分 
+      .row.border
+        .col #{@item.price}円
+        .col #{@item.kcal}kcal
+        .col #{@item.protein}g
+        .col #{@item.fat}g
+        .col #{@item.carb}g
+        .col #{@item.salt}g
+      .row.border
+        .col 備考
+      .row
+        .col
+          - if @item.note.present?
+            = @item.note 
+          - else
+            = "この商品の備考はありません"
+      .row.border
+        .col
+          = link_to "#", class:"btn btn-danger" do
+            お食事リストに追加する
+        .col
+          = link_to "#", class:"btn btn-warning text-white" do
+            レビューを投稿する
+        .col
+          = link_to edit_item_path(@item), class:"btn btn-info" do
+            商品情報を編集する
+      .row.border 
+        .col カスタマーレビュー
+      -# .row.border
+      -#   - if @item.reviews.present?
+      -#     = @item.reviews
+      -#   - else
+      -#     = "この商品の備考はありません"

@@ -1,0 +1,17 @@
+.item-show-wrapper{
+  padding: 30px 0 0;
+}
+.item-show-container{
+  text-align: center;
+  width: 60%;
+  padding: 10px 0;
+  margin: 0 auto;
+  background: #fff;
+  & img{
+    width: 50%;
+    height: auto;
+  }
+  & .item_shops{
+    display: inline-block;
+  }
+}
