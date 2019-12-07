@@ -2,19 +2,14 @@
   width: 90%;
   margin: 0 auto;
   background: #fff;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-}
-
-.mypage-header{
-  border: 1px solid #ddd;
+  border: 2px solid black;
+  border-top: none;
 }
 
 .mypage-main{
   border: 1px solid #ddd;
   width: 100%;
-  margin: 10px auto;
+  margin: 0 auto;
   padding: 30px;
   background: lightgrey;
   &__container{
@@ -26,7 +21,21 @@
     height: 300px;
     margin: 10px;
     background: #fff;
+    font-size: 1.3rem;
     border: 2px solid darkgrey;
     display: inline-block;
+    &__title{
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      padding: 10px 0;
+      background: #00184d;
+      color: #fff;
+    }
+    &__content{
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }  
   }
 }
