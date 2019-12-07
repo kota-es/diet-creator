@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_013559) do
+ActiveRecord::Schema.define(version: 2019_12_07_152806) do
 
   create_table "item_shops", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 2019_12_06_013559) do
   end
 
   create_table "list_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "quantity", default: 0
     t.bigint "list_id"
     t.bigint "item_id"
     t.datetime "created_at", null: false
