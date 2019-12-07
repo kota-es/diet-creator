@@ -10,7 +10,8 @@ class ReviewsController < ApplicationController
   def create
     @review = @item.reviews.new(review_params)
     if @review.save
-      redirect_to items_path
+      flash[:notice] = "レビューを投稿しました"
+      redirect_to item_path(@item)
     else
       render :new
     end      
@@ -21,7 +22,8 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params)
-      redirect_to items_path
+      flash[:notice] = "レビューを編集しました"
+      redirect_to item_path(@item)
     else
       render :new
     end  
@@ -29,7 +31,8 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to root_path
+    flash[:notice] = "レビューを投稿しました"
+    redirect_to item_path(@item)
   end
 
   private
