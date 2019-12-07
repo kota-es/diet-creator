@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update]
 
   def index
     @items = Item.includes(:shops).order(params[:sort])
@@ -37,7 +37,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy if @item.user_id == current_user.id
+    @item = current_user.items.find(params[:id])
+    @item.destroy
     redirect_to items_path
   end
 

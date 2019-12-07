@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
   resources :items do
     resources :reviews
-    post "/add_item" => "lists#add_item"
-    post "/delete_item" => "lists#delete_item"
+    post "/add_item", to: "lists#add_item"
+    post "/delete_item", to: "lists#delete_item"
   end
 
 end
