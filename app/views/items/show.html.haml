@@ -1,3 +1,4 @@
+= render 'shared/header'
 .item-show-wrapper
   .item-show-container
     .container
@@ -22,7 +23,7 @@
         .col.font-weight-bold 塩分 
       .row.border
         .col #{@item.price}円
-        .col #{@item.kcal}kcal
+        .col #{@item.kcal.to_s(:delimited)}kcal
         .col #{@item.protein}g
         .col #{@item.fat}g
         .col #{@item.carb}g
