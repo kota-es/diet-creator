@@ -7,8 +7,10 @@ class User < ApplicationRecord
 
   validates :name, presence: true 
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-  validates :password, presence: true, length: { in: 7..128 }, format: { with: VALID_PASSWORD_REGEX }, confirmation: true  
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { in: 7..128 }, format: { with: VALID_PASSWORD_REGEX }, confirmation: true, on: :create  
+  validates :password, presence: true, length: { in: 7..128 }, format: { with: VALID_PASSWORD_REGEX }, confirmation: true, on: :update, allow_blank: true
+  validates :password_confirmation, presence: true, on: :create
+  validates :password_confirmation, presence: true, on: :update, allow_blank: true
   validates :gender, presence: true
   validates :height, presence: true
   validates :weight, presence: true
@@ -16,7 +18,7 @@ class User < ApplicationRecord
   validates :birthday, presence: true
 
   has_many :items
-  has_many :reviews
+  has_many :reviews ,dependent: :destroy
   
   def gender_kana
     self.gender == "male" ? "男性" : "女性"
@@ -35,6 +37,7 @@ class User < ApplicationRecord
   def day_kcal
     gender_num = self.gender == "male" ? 0.4325 : 0.9708
     day_kcal = ((0.0481 * self.weight + 0.0234 * self.height - 0.0138 * age - gender_num ) * 1000 / 4.186 * self.pal).round
+    return day_kcal
   end
 
   def day_protein

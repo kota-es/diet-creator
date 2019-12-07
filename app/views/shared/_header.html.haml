@@ -1,11 +1,10 @@
+.flash
+  = flash[:notice]
 .mypage-header
-  %p 
-  こんにちは！
-  = current_user.name
-  さん
-  = link_to session_path(current_user), method: :delete do
-    ログアウト
   %nav.navbar.navbar-expand
+    .navbar-brand 
+      = link_to root_path do
+        コンメシ
     %ul.navbar-nav
       %li.nav-item
         =link_to items_path, class:"nav-link" do
@@ -14,8 +13,23 @@
         =link_to new_item_path, class:"nav-link" do
           商品を登録する
       %li.nav-item 
+        =link_to list_path(current_list), class:"nav-link" do
+          食事予定リストを見る
+      %li.nav-item 
         =link_to "#", class:"nav-link" do
           食事記録を見る
-      %li.nav-item
-        =link_to "#", class:"nav-link" do
-          ユーザー編集
+  .mypage-user.dropdown
+    = current_user.name
+    さん 
+    =image_tag current_user.image.url || default_url, class:"dropdown-toggle", id:"dropdownMenu1", data: {toggle:"dropdown"}, aria: {haspopup:"true", expanded:"true"}
+    %ul.dropdown-menu
+      %li
+        = link_to edit_user_path(current_user) do
+          アカウント編集
+      %li
+        = link_to profile_edit_user_path(current_user) do
+          プロフィール編集
+      %li
+        = link_to session_path(current_user), method: :delete, data: {confirm: "ログアウトします。よろしいですか？"} do
+          ログアウト
+.header-bottom

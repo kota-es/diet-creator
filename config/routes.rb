@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "users#index"
 
   resources :users do
+    get "profile_edit", on: :member
     collection do
       get "profile_registration"
     end

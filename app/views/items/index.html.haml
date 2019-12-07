@@ -1,3 +1,4 @@
+= render 'shared/header'
 .item-index-wrapper
   .item-index-container
     .container
@@ -28,7 +29,7 @@
               %td.genre #{item.genre.name}
               %td.shop= item.shop_name
               %td.price #{item.price}円
-              %td.kcal #{item.kcal}kcal
+              %td.kcal #{item.kcal.to_s(:delimited)}kcal
               %td.protein #{item.protein}g
               %td.fat #{item.fat}g
               %td.carb #{item.carb}g

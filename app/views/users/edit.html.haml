@@ -1,0 +1,34 @@
+.profile-wrapper
+  .profile-container
+    %h2.py-3.text-center アカウント編集
+    - if @user.errors.any?
+      - unless @user.valid?
+        - if errors = @user.errors.full_messages
+          %ul.signup-error-message
+            - errors.each do |error|
+              %li=error
+    .profile-form.bg-white.my-5.mx-auto
+      = form_for @user do |f|
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :name,"お名前（ニックネーム）"
+          .profile-form__field__input
+            = f.text_field :name, class: "account-form"
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :email,"メールアドレス"
+          .profile-form__field__input
+            = f.email_field :email, class: "account-form"
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :password,"パスワード"
+          .profile-form__field__input
+            = f.password_field :password, placeholder:"7文字以上（英数字含む）", class: "account-form"
+        .profile-form__field
+          .profile-form__field__label
+            = f.label :password_confirmation,"パスワード(確認)"
+          .profile-form__field__input
+            = f.password_field :password_confirmation, placeholder:"7文字以上（英数字含む）", class: "account-form"
+        .profile-form__field
+          = f.submit "更新する", class:"btn btn-primary btn-lg my-3"
+          %span.text-danger

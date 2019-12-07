@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :redirect_login, only: :index
-
+  before_action :set_user, only: [:edit, :profile_edit, :update]
   def index    
   end
 
@@ -15,6 +15,8 @@ class UsersController < ApplicationController
     session[:password] = user_params[:password]
     session[:password_confirmation] = user_params[:password_confirmation]
     @user = User.new
+ 
+
   end
 
   def create
@@ -39,6 +41,21 @@ class UsersController < ApplicationController
     end 
   end
 
+  def edit
+  end
+
+  def profile_edit
+  end
+
+  def update
+    if @user.update(user_params)
+      flash[:notice] = "アカウントデータを更新しました"
+      redirect_to root_path
+    else
+      render :edit
+    end 
+  end
+
   private
 
   def user_params
@@ -59,6 +76,10 @@ class UsersController < ApplicationController
 
   def redirect_login
     redirect_to new_session_path unless logged_in?
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end
