@@ -4,7 +4,8 @@
       .row
         %h3.col.font-weight-bold #{@item.name} (#{@item.genre.name})
       .row
-        .col.item-image= image_tag @item.image.url if @item.image.present?
+        .col.item-image
+          = image_tag @item.image.url if @item.image.present?
       .row.pt-3
         .col.font-weight-bold 販売店
       .row.pb-3
@@ -34,14 +35,19 @@
             = "この商品の備考はありません"
       .row.item-menu
         .col
-          = link_to "#", class:"btn btn-danger" do
-            お食事リストに追加する
+          = link_to item_add_item_path(@item), method: :post, class: "btn btn-primary btn-lg" do
+            食事予定に追加
         .col
-          = link_to new_item_review_path(@item), class:"btn btn-warning text-white" do
-            レビューを投稿する
+          = link_to new_item_review_path(@item), class: "btn btn-warning text-white btn-lg" do
+            レビューを投稿
         .col
-          = link_to edit_item_path(@item), class:"btn btn-info" do
-            商品情報を編集する
+          = link_to edit_item_path(@item), class: "btn btn-info btn-lg" do
+            商品情報を編集
+      -if @item.user_id == current_user.id 
+        .row.item-menu
+          .col
+            = link_to item_path(@item), method: :delete, data: {confirm: "この商品を削除します。よろしいですか？"}, class: "btn btn-danger" do
+              商品を削除
   .review-title
     %h5.font-weight-bold= "カスタマーレビュー(#{@reviews.length}件)"
   - @reviews.each do |review|
@@ -54,8 +60,8 @@
       - if review.user == current_user
         .review-btn
           .review-btn__delete
-            = link_to "/items/#{@item.id}/reviews/#{review.id}", method: :delete, class:"btn btn-danger" do
+            = link_to "/items/#{@item.id}/reviews/#{review.id}", method: :delete,  data: {confirm: "このレビューを削除します。よろしいですか？"}, class:"btn btn-danger" do
               削除
             .review-btn__edit
-            = link_to "/items/#{@item.id}/reviews/#{review.id}/edit", class:"btn btn-warning text-white" do
+            = link_to "/items/#{@item.id}/reviews/#{review.id}/edit", class:"btn btn-info text-white" do
               編集

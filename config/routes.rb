@@ -9,9 +9,13 @@ Rails.application.routes.draw do
   end
 
   resources :sessions
-  
+
+  resources :lists, only: [:show]
+
   resources :items do
     resources :reviews
+    post "/add_item", to: "lists#add_item"
+    post "/delete_item", to: "lists#delete_item"
   end
 
 end
