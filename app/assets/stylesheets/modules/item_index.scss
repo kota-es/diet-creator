@@ -1,11 +1,14 @@
-.item-index-wrapper{
-}
 .item-index-container{
   width: 90%;
   padding: 10px 0;
   margin: 0 auto;
   background: #fff;
+  border: 3px solid #ddd;
+  border-top: none;
   font-size: 0.85rem;
+  & h3{
+    text-align: center;
+  }
   & table{
     box-sizing: border-box;
     & .image{
@@ -48,13 +51,10 @@
     & thead{
       display: block;
       text-align: center;
-      & .detail{
-        text-align: center;
-      }
     }
     & tbody{
       display: block;
-      height: 80vh;
+      max-height: 80vh;
       overflow: scroll;
       &::-webkit-scrollbar{
         display: none;
@@ -66,6 +66,9 @@
       & td{
         text-align: right;
         line-height: 35px;
+        & .nolist{
+          text-align: center;
+        }
       }
     }
   }
