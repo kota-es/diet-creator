@@ -18,7 +18,9 @@ class User < ApplicationRecord
   validates :birthday, presence: true
 
   has_many :items
-  has_many :reviews ,dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :lists, dependent: :destroy
+  has_one :record, dependent: :destroy
   
   def gender_kana
     self.gender == "male" ? "男性" : "女性"
@@ -54,7 +56,7 @@ class User < ApplicationRecord
 
   def day_carb
     ((self.day_kcal * 0.6) / 4).round(1)
-   end
+  end
 
   def day_salt
     case self.gender
@@ -63,6 +65,70 @@ class User < ApplicationRecord
     when "female"
       7.0
     end
+  end
+
+  def today_records
+    records = self.record.record_items.where(created_at: Time.zone.now.all_day)
+  end
+
+  def today_kcal  
+    kcal = 0
+    today_records.each do |record|
+      kcal += record.item.kcal
+    end
+    return kcal
+  end
+
+  def today_protein 
+    protein = 0
+    today_records.each do |record|
+      protein += record.item.protein
+    end
+    return protein
+  end
+
+  def today_fat
+    fat = 0
+    today_records.each do |record|
+      fat += record.item.fat
+    end
+    return fat
+  end
+
+  def today_carb 
+    carb = 0
+    today_records.each do |record|
+      carb += record.item.carb
+    end
+    return carb
+  end
+
+  def today_salt
+    salt = 0
+    today_records.each do |record|
+      salt += record.item.salt
+    end
+    return salt
+  end
+
+  def balance_kcal
+    self.day_kcal - self.today_kcal
+  end
+
+  def balance_protein
+    self.day_protein - self.today_protein
+  end
+
+  def balance_fat
+    self.day_fat - self.today_fat
+  end
+
+  def balance_carb
+    self.day_carb - self.today_carb
+  end
+
+  def balance_salt
+    self.day_salt - self.today_salt
   end
 
 end
