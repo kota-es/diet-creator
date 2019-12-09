@@ -1,0 +1,42 @@
+= render 'shared/header'
+.item-index-wrapper
+  .item-index-container
+    %h3 食事記録
+    .container
+      %table.table.table-hover
+        %thead
+          %tr
+            - def sortTh(a, contName)
+              - if request.fullpath.include?('desc')
+                - link_to a, sort: contName
+              - else
+                - link_to a, sort: "#{contName} desc"
+            %th.image 商品
+            %th.name 商品名
+            %th.genre ジャンル
+            %th.shop 販売店
+            %th.price 価格（税抜）
+            %th.kcal= sortTh('カロリー', 'kcal')
+            %th.protein= sortTh('タンパク質', 'protein')
+            %th.fat= sortTh('脂質', 'fat')
+            %th.carb= sortTh('炭水化物', 'carb')
+            %th.salt= sortTh('塩分', 'salt')
+            %th.date 日付
+        %tbody
+          -if @records.length > 0
+            - @records.each do |record|
+              %tr
+                %td.image= image_tag record.item.image.url if record.item.image.present?
+                %td.name #{record.item.name}
+                %td.genre #{record.item.genre.name}
+                %td.shop= record.item.shop_name
+                %td.price #{record.item.price}円
+                %td.kcal #{record.item.kcal.to_s(:delimited)}kcal
+                %td.protein #{record.item.protein}g
+                %td.fat #{record.item.fat}g
+                %td.carb #{record.item.carb}g
+                %td.salt #{record.item.salt}g
+                %td.date #{record.created_at.strftime("%m/%d")}
+          - else
+            %tr
+              %td.norecord{colspan:11} 食事予定はありません
