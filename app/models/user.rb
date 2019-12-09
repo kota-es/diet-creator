@@ -68,7 +68,7 @@ class User < ApplicationRecord
   end
 
   def today_records
-    records = self.record.record_items.where(created_at: Time.zone.now.all_day)
+    self.record.record_items.where(created_at: Time.zone.now.all_day)
   end
 
   def today_kcal  
