@@ -14,6 +14,13 @@ class RecordsController < ApplicationController
     redirect_to root_path    
   end
 
+  def delete_item
+    record_item = current_user.record.record_items.find(params[:id])
+    record_item.destroy
+    flash[:notice] = "食事記録から#{record_item.item.name}を削除しました"
+    redirect_back(fallback_location: root_path) 
+  end
+
   private
 
   def item_ids

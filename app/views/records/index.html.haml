@@ -1,42 +1,43 @@
 = render 'shared/header'
-.item-index-wrapper
-  .item-index-container
+.record-index-wrapper
+  .record-index-container
     %h3 食事記録
     .container
       %table.table.table-hover
         %thead
           %tr
-            - def sortTh(a, contName)
-              - if request.fullpath.include?('desc')
-                - link_to a, sort: contName
-              - else
-                - link_to a, sort: "#{contName} desc"
             %th.image 商品
             %th.name 商品名
-            %th.genre ジャンル
-            %th.shop 販売店
-            %th.price 価格（税抜）
-            %th.kcal= sortTh('カロリー', 'kcal')
-            %th.protein= sortTh('タンパク質', 'protein')
-            %th.fat= sortTh('脂質', 'fat')
-            %th.carb= sortTh('炭水化物', 'carb')
-            %th.salt= sortTh('塩分', 'salt')
+            %th.kcal カロリー
+            %th.protein タンパク質
+            %th.fat 脂質
+            %th.carb 炭水化物
+            %th.salt 塩分
             %th.date 日付
+            %th.detail 詳細
+            %th.delete 削除
+            %th.add-list 食事予定に追加
         %tbody
           -if @records.length > 0
             - @records.each do |record|
               %tr
-                %td.image= image_tag record.item.image.url if record.item.image.present?
+                %td.image= image_tag record.item.image.url || default_url
                 %td.name #{record.item.name}
-                %td.genre #{record.item.genre.name}
-                %td.shop= record.item.shop_name
-                %td.price #{record.item.price}円
                 %td.kcal #{record.item.kcal.to_s(:delimited)}kcal
                 %td.protein #{record.item.protein}g
                 %td.fat #{record.item.fat}g
                 %td.carb #{record.item.carb}g
                 %td.salt #{record.item.salt}g
-                %td.date #{record.created_at.strftime("%m/%d")}
+                %td.date #{record.created_at.strftime("%m月%d日(%a)")}
+                %th.detail
+                  = link_to item_path(record.item) ,class:"btn btn-info" do
+                    詳細
+                %th.delete
+                  = link_to "/record_items/#{record.id}/delete_item", method: :delete, data: {confirm:"食事記録から削除します。よろしいですか？"}, class:"btn btn-danger" do
+                    削除
+                %th.add-list
+                  = link_to item_add_item_path(record.item), method: :post, class:"btn btn-primary" do
+                    食事予定に追加
           - else
             %tr
               %td.norecord{colspan:11} 食事予定はありません

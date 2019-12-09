@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     delete "/delete_item", to: "lists#delete_item", on: :member
   end
 
-  resources :records, only: [:index, :create]
+  resources :records, only: [:index, :create] 
+
+  delete "/record_items/:id/delete_item", to: "records#delete_item"
 
 end
