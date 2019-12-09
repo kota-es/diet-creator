@@ -1,5 +1,8 @@
-.flash
-  = flash[:notice]
+.info
+  .row
+    .col.date.text-left= Date.today.strftime("%Y年%t%m月%t%d日%t(%a)")
+    .col.msg.text-center= flash[:notice]
+    .col
 .mypage-header
   %nav.navbar.navbar-expand
     .navbar-brand 
