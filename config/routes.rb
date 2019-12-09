@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   resources :items do
     resources :reviews
     post "/add_item", to: "lists#add_item"
-    post "/delete_item", to: "lists#delete_item"
+    delete "/delete_item", to: "lists#delete_item", on: :member
   end
+
+  resources :records, only: [:index, :create]
 
 end
