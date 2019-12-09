@@ -59,12 +59,7 @@ class User < ApplicationRecord
   end
 
   def day_salt
-    case self.gender
-    when "male" 
-      8.0
-    when "female"
-      7.0
-    end
+    self.gender == "male" ? 8.0 : 7.0
   end
 
   def today_records
