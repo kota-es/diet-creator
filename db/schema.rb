@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_07_152806) do
+ActiveRecord::Schema.define(version: 2019_12_08_045632) do
 
   create_table "item_shops", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id"
@@ -55,6 +55,22 @@ ActiveRecord::Schema.define(version: 2019_12_07_152806) do
     t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
+  create_table "record_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "record_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_record_items_on_item_id"
+    t.index ["record_id"], name: "index_record_items_on_record_id"
+  end
+
+  create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_records_on_user_id"
+  end
+
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id"
     t.bigint "user_id"
@@ -94,6 +110,9 @@ ActiveRecord::Schema.define(version: 2019_12_07_152806) do
   add_foreign_key "list_items", "items"
   add_foreign_key "list_items", "lists"
   add_foreign_key "lists", "users"
+  add_foreign_key "record_items", "items"
+  add_foreign_key "record_items", "records"
+  add_foreign_key "records", "users"
   add_foreign_key "reviews", "items"
   add_foreign_key "reviews", "users"
 end

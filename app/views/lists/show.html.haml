@@ -1,0 +1,48 @@
+= render 'shared/header'
+.item-index-wrapper
+  .item-index-container
+    %h3 食事予定リスト
+    .container
+      %table.table.table-hover
+        %thead
+          %tr
+            - def sortTh(a, contName)
+              - if request.fullpath.include?('desc')
+                - link_to a, sort: contName
+              - else
+                - link_to a, sort: "#{contName} desc"
+            %th.image 商品
+            %th.name 商品名
+            %th.genre ジャンル
+            %th.shop 販売店
+            %th.price 価格（税抜）
+            %th.kcal= sortTh('カロリー', 'kcal')
+            %th.protein= sortTh('タンパク質', 'protein')
+            %th.fat= sortTh('脂質', 'fat')
+            %th.carb= sortTh('炭水化物', 'carb')
+            %th.salt= sortTh('塩分', 'salt')
+            %th.delete
+        %tbody
+          -if @lists.length > 0
+            - @lists.each do |list|
+              %tr
+                %td.image= image_tag list.item.image.url if list.item.image.present?
+                %td.name #{list.item.name}
+                %td.genre #{list.item.genre.name}
+                %td.shop= list.item.shop_name
+                %td.price #{list.item.price}円
+                %td.kcal #{list.item.kcal.to_s(:delimited)}kcal
+                %td.protein #{list.item.protein}g
+                %td.fat #{list.item.fat}g
+                %td.carb #{list.item.carb}g
+                %td.salt #{list.item.salt}g
+                %td.delete
+                  = link_to delete_item_item_path(list), method: :delete, data: {confirm:"削除します。よろしいですか？"}, class:"btn btn-danger" do
+                    削除
+          - else
+            %tr
+              %td.nolist{colspan:11} 食事予定はありません
+      -if @lists.length > 0
+        .add_record
+          = link_to records_path, method: :post, class:"btn btn-success btn-lg w-100 text-center", data: {confirm:"リストの商品を食事記録に追加します。よろしいですか？"} do
+            食事記録に追加する

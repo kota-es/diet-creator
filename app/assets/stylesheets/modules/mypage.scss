@@ -36,6 +36,13 @@
       padding: 10px;
       display: flex;
       justify-content: space-between;
+    }
+    &__balance {
+      padding: 30px 10px;
+      &__number{
+        font-size: 1.5rem;
+        text-align: center;
+      }
     }  
   }
 }

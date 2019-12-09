@@ -6,7 +6,7 @@
         %h3.col.font-weight-bold #{@item.name} (#{@item.genre.name})
       .row
         .col.item-image
-          = image_tag @item.image.url if @item.image.present?
+          = image_tag @item.image.url || default_url
       .row.pt-3
         .col.font-weight-bold 販売店
       .row.pb-3

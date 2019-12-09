@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     session[:password_confirmation] = user_params[:password_confirmation]
     @user = User.new
  
-
   end
 
   def create
@@ -33,12 +32,13 @@ class UsersController < ApplicationController
       birthday: birthday
     )
     if  @user.save
+      Record.create(user_id: @user.id) 
       login(session[:email], session[:password])
       flash[:notice] = "ユーザー登録が完了しました"
       redirect_to root_path
     else
       render :new
-    end 
+    end
   end
 
   def edit

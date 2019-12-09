@@ -24,7 +24,7 @@
         %tbody
           - @items.each do |item|
             %tr
-              %td.image= image_tag item.image.url if item.image.present?
+              %td.image= image_tag item.image.url || default_url
               %td.name #{item.name}
               %td.genre #{item.genre.name}
               %td.shop= item.shop_name

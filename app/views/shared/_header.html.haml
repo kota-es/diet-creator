@@ -9,15 +9,15 @@
       %li.nav-item
         =link_to items_path, class:"nav-link" do
           商品を探す
+      %li.nav-item 
+        =link_to list_path(current_list), class:"nav-link" do
+          食事予定を見る
+      %li.nav-item 
+        =link_to records_path, class:"nav-link" do
+          食事記録を見る
       %li.nav-item
         =link_to new_item_path, class:"nav-link" do
           商品を登録する
-      %li.nav-item 
-        =link_to list_path(current_list), class:"nav-link" do
-          食事予定リストを見る
-      %li.nav-item 
-        =link_to "#", class:"nav-link" do
-          食事記録を見る
   .mypage-user.dropdown
     = current_user.name
     さん 

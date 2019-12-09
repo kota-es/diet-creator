@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = login(params[:email], params[:password])
-    if @user
+    user = login(params[:email], params[:password])
+    if user
       flash[:notice] = "ログインしました"
       redirect_to root_path
     else
@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    current_list.destroy
     logout
     redirect_to new_session_path
   end
