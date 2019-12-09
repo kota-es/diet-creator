@@ -24,7 +24,20 @@
           .mypage-main__data-box__content__right #{current_user.day_kcal.to_s(:delimited)}kcal      
         .mypage-main__data-box__content
           .mypage-main__data-box__content__left 今日の摂取量
-          .mypage-main__data-box__content__right kcal
+          .mypage-main__data-box__content__right 
+            - if current_user.today_kcal.nil?
+              0kcal
+            - else
+              #{current_user.today_kcal.to_s(:delimited)}kcal
+        .mypage-main__data-box__balance
+          - if current_user.balance_kcal >= 0
+            あと
+            .mypage-main__data-box__balance__number.text-success  
+              #{current_user.balance_kcal.to_s(:delimited)}kcalオーケー!
+          - else
+            もう
+            .mypage-main__data-box__balance__number.text-danger  
+              #{current_user.balance_kcal.abs.to_s(:delimited)}kcalオーバー!
       .mypage-main__data-box.protein
         .mypage-main__data-box__title タンパク質（g）
         .mypage-main__data-box__content
@@ -32,7 +45,20 @@
           .mypage-main__data-box__content__right #{current_user.day_protein}g
         .mypage-main__data-box__content
           .mypage-main__data-box__content__left 今日の摂取量
-          .mypage-main__data-box__content__right g
+          .mypage-main__data-box__content__right
+            - if current_user.today_protein.nil?
+              0g
+            - else
+              #{current_user.today_protein}g
+        .mypage-main__data-box__balance
+          - if current_user.balance_protein >= 0
+            あと
+            .mypage-main__data-box__balance__number.text-success  
+              #{current_user.balance_protein.abs.round(1)}gオーケー!
+          - else
+            もう
+            .mypage-main__data-box__balance__number.text-danger  
+              #{current_user.balance_protein.abs.round(1)}gオーバー!
     .mypage-main__container
       .mypage-main__data-box.fat
         .mypage-main__data-box__title 脂質（g）
@@ -41,7 +67,20 @@
           .mypage-main__data-box__content__right #{current_user.day_fat}g
         .mypage-main__data-box__content
           .mypage-main__data-box__content__left 今日の摂取量
-          .mypage-main__data-box__content__right g
+          .mypage-main__data-box__content__right
+            - if current_user.today_fat.nil?
+              0g
+            - else
+              #{current_user.today_fat}g
+        .mypage-main__data-box__balance
+          - if current_user.balance_fat >= 0
+            あと
+            .mypage-main__data-box__balance__number.text-success  
+              #{current_user.balance_fat.abs.round(1)}gオーケー!
+          - else
+            もう
+            .mypage-main__data-box__balance__number.text-danger  
+              #{current_user.balance_fat.abs.round(1)}gオーバー!
       .mypage-main__data-box.carb
         .mypage-main__data-box__title 炭水化物（g）
         .mypage-main__data-box__content
@@ -49,7 +88,20 @@
           .mypage-main__data-box__content__right #{current_user.day_carb}g
         .mypage-main__data-box__content
           .mypage-main__data-box__content__left 今日の摂取量
-          .mypage-main__data-box__content__right g
+          .mypage-main__data-box__content__right
+            - if current_user.today_carb.nil?
+              0g
+            - else
+              #{current_user.today_carb}g
+        .mypage-main__data-box__balance
+          - if current_user.balance_carb >= 0
+            あと
+            .mypage-main__data-box__balance__number.text-success  
+              #{current_user.balance_carb.abs.round(1)}gオーケー!
+          - else
+            もう
+            .mypage-main__data-box__balance__number.text-danger  
+              #{current_user.balance_carb.abs.round(1)}gオーバー!
       .mypage-main__data-box.salt
         .mypage-main__data-box__title 塩分（g）
         .mypage-main__data-box__content
@@ -57,5 +109,18 @@
           .mypage-main__data-box__content__right #{current_user.day_salt}g
         .mypage-main__data-box__content
           .mypage-main__data-box__content__left 今日の摂取量
-          .mypage-main__data-box__content__right g
+          .mypage-main__data-box__content__right
+            - if current_user.today_salt.nil?
+              0g
+            - else
+              #{current_user.today_salt}g
+        .mypage-main__data-box__balance
+          - if current_user.balance_salt >= 0
+            あと
+            .mypage-main__data-box__balance__number.text-success  
+              #{current_user.balance_salt.abs.round(1)}gオーケー!
+          - else
+            もう
+            .mypage-main__data-box__balance__number.text-danger  
+              #{current_user.balance_salt.abs.round(1)}gオーバー!
   .mypage-footer
