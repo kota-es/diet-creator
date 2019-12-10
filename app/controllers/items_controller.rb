@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
   before_action :set_item, only: [:show, :edit, :update]
 
   def index
@@ -13,8 +12,7 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.new(item_params)
     if @item.save
-      flash[:notice] = "商品「#{@item.name}」の登録が完了しました"
-      redirect_to items_path
+      redirect_to items_path, notice: "商品「#{@item.name}」の登録が完了しました"
     else
       render :new
     end
@@ -29,8 +27,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      flash[:notice] = "商品「#{@item.name}」の更新が完了しました"
-      redirect_to items_path
+      redirect_to items_path, notice: "商品「#{@item.name}」の更新が完了しました"
     else
       render :edit
     end

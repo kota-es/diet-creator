@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
 
   def new
   end
@@ -6,8 +7,7 @@ class SessionsController < ApplicationController
   def create
     user = login(params[:email], params[:password])
     if user
-      flash[:notice] = "ログインしました"
-      redirect_to root_path
+      redirect_to root_path, notice: "ログインしました"
     else
       render :new
     end

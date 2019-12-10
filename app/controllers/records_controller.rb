@@ -10,15 +10,16 @@ class RecordsController < ApplicationController
       @record_items = RecordItem.create(record_id: @record.id, item_id: item_id)
     end
     current_list.destroy
-    flash[:notice] = "食事記録を更新しました"
-    redirect_to root_path    
+    redirect_to root_path, notice: "食事記録を更新しました"
   end
 
   def delete_item
     record_item = current_user.record.record_items.find(params[:id])
-    record_item.destroy
-    flash[:notice] = "食事記録から#{record_item.item.name}を削除しました"
-    redirect_back(fallback_location: root_path) 
+    if record_item.destroy
+      redirect_back(fallback_location: root_path), notice: "食事記録から#{record_item.item.name}を削除しました"
+    else
+      flash.now[:notice] = "食事記録の削除に失敗しました"
+    end
   end
 
   private

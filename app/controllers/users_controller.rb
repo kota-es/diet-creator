@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-
-  before_action :redirect_login, only: :index
+  skip_before_action :require_login, only: [:new, :profile_registration, :create]
   before_action :set_user, only: [:edit, :profile_edit, :update]
+
   def index    
   end
 
@@ -34,8 +34,7 @@ class UsersController < ApplicationController
     if  @user.save
       Record.create(user_id: @user.id) 
       login(session[:email], session[:password])
-      flash[:notice] = "ユーザー登録が完了しました"
-      redirect_to root_path
+      redirect_to root_path, notice: "ユーザー登録が完了しました"
     else
       render :new
     end
@@ -49,8 +48,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "アカウントデータを更新しました"
-      redirect_to root_path
+      redirect_to root_path, notice: "アカウントデータを更新しました"
     else
       render :edit
     end 
@@ -72,10 +70,6 @@ class UsersController < ApplicationController
     end
     
     Date.new(year.to_i, month.to_i, day.to_i)
-  end
-
-  def redirect_login
-    redirect_to new_session_path unless logged_in?
   end
 
   def set_user
