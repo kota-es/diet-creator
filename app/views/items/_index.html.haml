@@ -1,0 +1,55 @@
+.item-index-wrapper
+  .item-index-container
+    %h3 登録商品リスト
+    .search-area
+      %h5 商品検索
+      .search-form
+        = search_form_for @q, url: search_items_path do |f|
+          = f.label :name_cont, "商品名"
+          = f.text_field :name_cont, placeholder: "空欄可", class: "name"
+          = f.label  :genre_id_eq, "ジャンル"
+          = f.collection_select :genre_id_eq, Genre.all, :id, :name, include_blank: "指定しない", class: "genre"
+          = f.label  :shops_id_eq, "販売店"
+          = f.collection_select :shops_id_eq, Shop.all, :id, :name, include_blank: "指定しない", class: "shop"
+          = f.label "カロリー"
+          = f.text_field :kcal_gteq, class: "kcal"
+          %span 〜
+          = f.text_field :kcal_lteq, class: "kcal"
+          %span kcal
+          = f.submit "検索", class: "submit"
+    .container
+      %table.table.table-hover
+        %thead
+          %tr
+            - def sortTh(a, contName)
+              - if request.fullpath.include?('desc')
+                - link_to a, sort: contName
+              - else
+                - link_to a, sort: "#{contName} desc"
+            %th.image 商品
+            %th.name 商品名
+            %th.genre ジャンル
+            %th.shop 販売店
+            %th.price 価格（税抜）
+            %th.kcal= sortTh('カロリー', 'kcal')
+            %th.protein= sortTh('タンパク質', 'protein')
+            %th.fat= sortTh('脂質', 'fat')
+            %th.carb= sortTh('炭水化物', 'carb')
+            %th.salt= sortTh('塩分', 'salt')
+            %th.detail 詳細
+        %tbody
+          - @items.each do |item|
+            %tr
+              %td.image= image_tag item.image.url || default_url
+              %td.name #{item.name}
+              %td.genre #{item.genre.name}
+              %td.shop= item.shop_name
+              %td.price #{item.price}円
+              %td.kcal #{item.kcal.to_s(:delimited)}kcal
+              %td.protein #{item.protein}g
+              %td.fat #{item.fat}g
+              %td.carb #{item.carb}g
+              %td.salt #{item.salt}g
+              %td.detail
+                = link_to item_path(item) ,class:"btn btn-info" do
+                  詳細

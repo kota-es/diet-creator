@@ -9,6 +9,25 @@
   & h3{
     text-align: center;
   }
+  & .search-area{
+    text-align: center;
+    margin: 30px auto;
+    & .search-form{
+      & label, .submit{
+        margin-left: 15px;
+        font-weight: bold;
+      }
+      & input, select{
+        height: 30px;
+      }
+      & .name{
+        width: 250px;
+      }
+      & .kcal{
+        width: 50px;
+      }
+    }
+  }
   & table{
     box-sizing: border-box;
     & .image{

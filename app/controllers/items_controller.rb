@@ -2,7 +2,13 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update]
 
   def index
-    @items = Item.includes(:shops).order(params[:sort])
+    @q = Item.ransack(params[:q])
+    @items = @q.result(distinct: true)
+  end 
+
+  def search
+    @q = Item.search(search_params)
+    @items = @q.result(distinct: true)
   end 
     
   def new
@@ -47,6 +53,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def search_params
+    params.require(:q).permit(:name_cont, :genre_id_eq, :shops_id_eq)
   end
 
 end

@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   resources :items do
     resources :reviews
+    collection do
+      get "search"
+    end
     post "/add_item", to: "lists#add_item"
     delete "/delete_item", to: "lists#delete_item", on: :member
   end
