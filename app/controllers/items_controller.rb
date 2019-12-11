@@ -3,12 +3,12 @@ class ItemsController < ApplicationController
 
   def index
     @q = Item.ransack(params[:q])
-    @items = @q.result(distinct: true)
+    @items = @q.result(distinct: true).order("created_at DESC")
   end 
 
   def search
     @q = Item.search(search_params)
-    @items = @q.result(distinct: true)
+    @items = @q.result(distinct: true).order("created_at DESC")
   end 
     
   def new
