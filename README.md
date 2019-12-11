@@ -40,7 +40,7 @@
 |[![Image from Gyazo](https://i.gyazo.com/e005fd494854031ae5bd13ee2362f36f.png)](https://gyazo.com/e005fd494854031ae5bd13ee2362f36f)|[![Image from Gyazo](https://i.gyazo.com/5a68b3063583a3f89ae41fc2be5a77f7.png)](https://gyazo.com/5a68b3063583a3f89ae41fc2be5a77f7)|
 
 # リンク
-https://favotube.herokuapp.com/
+http://52.69.21.59/
 
 ## テストアカウント
 <p>メールアドレス：test@test.com</p>
