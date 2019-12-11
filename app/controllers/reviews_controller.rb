@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 
-  before_action :set_item, only: [:new, :create, :edit]
+  before_action :set_item, only: [:new, :create]
   before_action :set_my_review, only: [:edit, :update, :destroy]
 
   def new
@@ -21,9 +21,9 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params)
-      redirect_to item_path(@item), notice: "レビューを更新しました"
+      redirect_to item_path(@review.item), notice: "レビューを更新しました"
     else
-      render :new
+      render :edit
     end  
   end
 
@@ -44,6 +44,7 @@ class ReviewsController < ApplicationController
 
   def set_my_review
     @review = current_user.reviews.find(params[:id])
+    @item = @review.item
   end
 
 end

@@ -9,7 +9,7 @@ class ListsController < ApplicationController
     @list_item = current_list.list_items.new(item_id: params[:item_id])
     if @list_item.save
       flash[:notice] = "#{@list_item.item.name}を食事予定に追加しました"
-      redirect_back(fallback_location: root_path)
+      redirect_to list_path(current_list)
     else
       flash[:notice] = "食事予定の追加に失敗しました"
       redirect_back(fallback_location: root_path) 
