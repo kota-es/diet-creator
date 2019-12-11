@@ -23,12 +23,12 @@
           .profile-form__field__label
             = f.label :password,"パスワード"
           .profile-form__field__input
-            = f.password_field :password, placeholder:"7文字以上（英数字含む）", class: "account-form"
+            = f.password_field :password, placeholder:"空欄の場合は変更なし", class: "account-form"
         .profile-form__field
           .profile-form__field__label
             = f.label :password_confirmation,"パスワード(確認)"
           .profile-form__field__input
-            = f.password_field :password_confirmation, placeholder:"7文字以上（英数字含む）", class: "account-form"
+            = f.password_field :password_confirmation, placeholder:"空欄の場合は変更なし", class: "account-form"
         .profile-form__field
           = f.submit "更新する", class:"btn btn-primary btn-lg my-3"
           %span.text-danger
