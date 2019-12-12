@@ -11,6 +11,7 @@ class Item < ApplicationRecord
   validates :salt, presence: true
   validates :genre_id, presence: true
   validates :user_id, presence: true
+  validate :validate_shops
 
   belongs_to_active_hash :genre
   has_many :item_shops, dependent: :destroy
@@ -27,6 +28,12 @@ class Item < ApplicationRecord
     else
       self.shops.first.name
     end
+  end
+  
+  private
+
+  def validate_shops
+    errors.add(:shops, "を1つ以上選択してください") if shops.size.zero?
   end
 
 end
