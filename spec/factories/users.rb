@@ -1,15 +1,16 @@
 FactoryBot.define do
   
   factory :user do
-    name                  {"spec_user"}
-    email                 {"spec@gmail.com"}
-    password              {"1q2w3e4"}
-    password_confirmation {"1q2w3e4"}
+    password = Faker::Internet.password(min_length: 7, mix_case: true)
+    name                  {Faker::Name.name}
+    sequence(:email)      {|n| "spec#{n}@gmail.com"}
+    password              {password}
+    password_confirmation {password}
     image                 {Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/spec_test.png'))}
     gender                {"male"}
-    height                {170.5}
-    weight                {61.5}
+    height                {Faker::Number.decimal(l_digits: 3, r_digits: 1)}
+    weight                {Faker::Number.decimal(l_digits: 3, r_digits: 1)}
     pal                   {1.5}
-    birthday              {"1990-1-1"}
+    birthday              {Faker::Date.birthday}
   end
 end
