@@ -1,14 +1,15 @@
 FactoryBot.define do
   factory :item do
-    name                  {"肉巻きおにぎり"}
+    name                  {Faker::Food.dish}
     image                 {Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/spec_test.png'))}
-    price                 {130}
-    kcal                  {300}
-    protein               {10.5}
-    fat                   {20}
-    carb                  {31.3}
-    salt                  {0.6}
-    note                  {"美味しい"}
-    genre_id              {1}
+    price                 {Faker::Number.number(digits: 4)}
+    kcal                  {Faker::Number.number(digits: 4)}
+    protein               {Faker::Number.decimal(l_digits: 2, r_digits: 1)}
+    fat                   {Faker::Number.decimal(l_digits: 2, r_digits: 1)}
+    carb                  {Faker::Number.decimal(l_digits: 2, r_digits: 1)}
+    salt                  {Faker::Number.decimal(l_digits: 2, r_digits: 1)}
+    note                  {Faker::Lorem.paragraphs}
+    genre_id              {Faker::Number.within(range: 1..24)}
+    user
   end
 end
