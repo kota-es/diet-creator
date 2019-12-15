@@ -19,7 +19,7 @@
       .item-registration-form__field__label
         = f.label :shop_id, "販売店(1つ以上選択)"
       .item-registration-form__field__input
-        = f.collection_check_boxes :shop_ids, Shop.all, :id, :name do |b|
+        = f.collection_check_boxes :shop_ids, Shop.all, :id, :name, include_hidden: false do |b|
           %div
             = b.check_box
             = b.label
