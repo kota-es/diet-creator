@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-describe Item do
+describe Item, type: :model do
   it "image,note以外が入力されていれば登録できる" do
-    user = create(:user)
-    shop = create(:shop)
-    item = build(:item, image: nil, note: nil, user_id: user.id, shop_ids: shop.id)
+    shop = create(:seven_eleven)
+    item = create(:item, image: nil, note: nil, shop_ids: shop.id)
     item.valid?
     expect(item).to be_valid
   end

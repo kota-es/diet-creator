@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Review do
   it "comment, taste, volumeが入力してあれば登録できる" do
     user = create(:user)
-    shop = create(:shop)
+    shop = create(:seven_eleven)
     item = create(:item, shop_ids: shop.id)
     review = build(:review, user_id: user.id, item_id: item.id)
     review.valid?

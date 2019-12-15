@@ -3,7 +3,7 @@ FactoryBot.define do
     taste   {Faker::Number.within(range: 1..5)}
     volume  {Faker::Number.within(range: 1..5)}
     comment {Faker::Lorem.paragraphs}
-    item
-    user
+    association :user, factory: :user
+    association :item, factory: :item
   end
 end
