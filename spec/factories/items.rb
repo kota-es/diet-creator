@@ -10,6 +10,6 @@ FactoryBot.define do
     salt                  {Faker::Number.decimal(l_digits: 2, r_digits: 1)}
     note                  {Faker::Lorem.paragraphs}
     genre_id              {Faker::Number.within(range: 1..24)}
-    user
+    association :user, factory: :user
   end
 end

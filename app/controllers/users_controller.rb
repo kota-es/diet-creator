@@ -32,8 +32,8 @@ class UsersController < ApplicationController
       birthday: birthday
     )
     if  @user.save
-      Record.create(user_id: @user.id) 
       login(session[:email], session[:password])
+      set_up_record
       redirect_to root_path, notice: "ユーザー登録が完了しました"
     else
       render :new

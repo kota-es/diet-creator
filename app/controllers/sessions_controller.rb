@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   def create
     user = login(params[:email], params[:password])
     if user
+      set_up_record
       redirect_to root_path, notice: "ログインしました"
     else
       render :new

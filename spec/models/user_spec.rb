@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User do
+describe User, type: :model do
   it "image以外が入力されていれば登録できる" do
     user = build(:user, image: nil)
     user.valid?

@@ -15,7 +15,7 @@ class Item < ApplicationRecord
 
   belongs_to_active_hash :genre
   has_many :item_shops, dependent: :destroy
-  has_many :shops, through: :item_shops ,dependent: :destroy
+  has_many :shops, through: :item_shops
   has_many :reviews, dependent: :destroy
   has_many :lists, dependent: :destroy
   belongs_to :user

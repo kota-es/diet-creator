@@ -2,19 +2,19 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "users#index"
 
-  resources :users do
+  resources :users, only: [:index, :new, :create, :edit, :update] do
     get "profile_edit", on: :member
     collection do
       get "profile_registration"
     end
   end
 
-  resources :sessions
+  resources :sessions, only: [:new, :create, :destroy]
 
   resources :lists, only: [:show]
 
-  resources :items do
-    resources :reviews
+  resources :items, only: [:index, :new, :create, :show, :edit, :update] do
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
     collection do
       get "search"
     end
