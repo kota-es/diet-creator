@@ -33,7 +33,7 @@
 
 |商品検索結果|商品詳細画面|
 |:-------:|:--------:|
-|[![Image from Gyazo](https://i.gyazo.com/667edfee152681c32cb0c3524cce9985.png)](https://gyazo.com/667edfee152681c32cb0c3524cce9985)|[![Image from Gyazo](https://i.gyazo.com/ae2d58fb3444c8a1d34d608f560ea238.png)](https://gyazo.com/ae2d58fb3444c8a1d34d608f560ea238)|
+|[![Image from Gyazo](https://i.gyazo.com/667edfee152681c32cb0c3524cce9985.png)](https://gyazo.com/667edfee152681c32cb0c3524cce9985)|[![Image from Gyazo](https://i.gyazo.com/52da1775734126867144f00b822d4264.png)](https://gyazo.com/52da1775734126867144f00b822d4264)|
 
 |食事予定リスト画面（擬似カート）|食事記録画面|
 |:-------:|:--------:|
