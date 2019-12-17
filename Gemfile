@@ -86,3 +86,4 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'active_hash'
 gem 'ransack'
+gem "excon", ">= 0.71.0"
