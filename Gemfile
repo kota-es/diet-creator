@@ -87,3 +87,4 @@ gem 'haml-rails'
 gem 'active_hash'
 gem 'ransack'
 gem "excon", ">= 0.71.0"
+gem "rack", ">= 2.0.8"
